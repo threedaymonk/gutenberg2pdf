@@ -339,22 +339,13 @@
                                        {3.25ex \@plus1ex \@minus .2ex}%
                                        {-1em}%
                                       {\normalfont\normalsize\bfseries}}
-\if@twocolumn
-  \setlength\leftmargini  {2em}
-\else
-  \setlength\leftmargini  {2.5em}
-\fi
+\setlength\leftmargini  {0em}
 \leftmargin  \leftmargini
-\setlength\leftmarginii  {2.2em}
-\setlength\leftmarginiii {1.87em}
-\setlength\leftmarginiv  {1.7em}
-\if@twocolumn
-  \setlength\leftmarginv  {.5em}
-  \setlength\leftmarginvi {.5em}
-\else
-  \setlength\leftmarginv  {1em}
-  \setlength\leftmarginvi {1em}
-\fi
+\setlength\leftmarginii  {0em}
+\setlength\leftmarginiii {0em}
+\setlength\leftmarginiv  {0em}
+\setlength\leftmarginv  {0em}
+\setlength\leftmarginvi {0em}
 \setlength  \labelsep  {.5em}
 \setlength  \labelwidth{\leftmargini}
 \addtolength\labelwidth{-\labelsep}
@@ -642,13 +633,8 @@
   \onecolumn
 \fi
 
-\headheight=0pt
-\headsep=0pt
-\textheight=119mm
-\textwidth=87mm
-\oddsidemargin= -2.5cm
-\evensidemargin= -2.5cm
-\topmargin -2.5cm
+\usepackage[top=0mm, bottom=0mm, left=0mm, right=0mm]{geometry} 
+\pagestyle{empty}
 
 \endinput
 %%

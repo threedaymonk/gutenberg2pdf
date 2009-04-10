@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 require 'rubypants'
 require 'htmlentities'
+require 'fileutils'
 
 class Converter
   def initialize(istream, ostream)
@@ -97,4 +98,18 @@ private
   end
 end
 
-Converter.new($stdin, $stdout).process
+ARGV.each do |src_file|
+  Dir.chdir(File.dirname(src_file)) do
+    basename = File.basename(src_file, '.txt')
+    dest_file = basename + '.tex'
+    File.open(src_file) do |src|
+      File.open(dest_file, 'w') do |dest|
+        Converter.new(src, dest).process
+      end
+      system "xelatex", dest_file
+      Dir[basename+".{tex,aux,log,out}"].each do |f|
+        FileUtils.rm(f)
+      end
+    end
+  end
+end

@@ -1,0 +1,8 @@
+#!/bin/sh
+for infile in $@
+do
+  outfile=`grep Title: "$infile" | head -n 1 | cut -b8- | sed -r 's/[^a-z0-9]+/-/ig' | sed -r 's/-$//'`.txt
+  encoding=`detenc -q "$infile"`
+  dos2unix "$infile"
+  iconv -f "$encoding" -t "UTF-8" < "$infile" > "$outfile" && rm "$infile"
+done

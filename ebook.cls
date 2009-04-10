@@ -56,6 +56,14 @@
 \setcounter{dbltopnumber}{2}
 \renewcommand\dbltopfraction{.7}
 \renewcommand\dblfloatpagefraction{.5}
+\renewcommand{\title}[1]{
+  \gdef\@title{#1}
+  \hypersetup{pdftitle={#1}}
+}
+\renewcommand{\author}[1]{
+  \gdef\@author{#1}
+  \hypersetup{pdfauthor={#1}}
+}
 \if@twoside
   \def\ps@headings{%
       \let\@oddfoot\@empty\let\@evenfoot\@empty
@@ -620,7 +628,6 @@
 \pagestyle{empty}
 \usepackage{fontspec}
 \setromanfont{Liberation Serif}
+\RequirePackage[xetex]{hyperref}
 
 \endinput
-%%
-%% End of file `book.cls'.

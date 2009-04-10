@@ -646,7 +646,6 @@
 \headsep=0pt
 \textheight=119mm
 \textwidth=87mm
-\parindent=0em
 \oddsidemargin= -2.5cm
 \evensidemargin= -2.5cm
 \topmargin -2.5cm

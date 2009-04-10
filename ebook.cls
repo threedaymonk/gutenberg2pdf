@@ -113,8 +113,6 @@
       \begin{tabular}[t]{c}%
         \@author
       \end{tabular}\par}%
-      \vskip 1.5em%
-    {\large \@date \par}%       % Set date in \large size.
   \end{center}\par
   \@thanks
   \vfil\null

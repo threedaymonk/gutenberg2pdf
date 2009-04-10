@@ -35,8 +35,11 @@ private
   end
 
   def tex_para(s)
-    escaped = tex_escape(HTMLEntities.new.decode(RubyPants.new(s).to_html))
-    puts escaped.gsub(/\\_(\S.*?\S)\\_/, "\\\\textit{\\1}")
+    s = s.gsub(/_(\S.*?\S)_/, "xBEGINxITALICx\\1xENDxITALICx")
+    s = tex_escape(HTMLEntities.new.decode(RubyPants.new(s).to_html))
+    s.gsub!(/xBEGINxITALICx/, "\\\\textit{")
+    s.gsub!(/xENDxITALICx/, "}")
+    puts s
   end
 
   def tex_escape(s)

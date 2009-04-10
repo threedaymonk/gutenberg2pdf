@@ -11,8 +11,9 @@ class Converter
 
   def process
     tex "documentclass", "ebook"
-    read_file
     read_header
+    read_file
+    skip_title
     tex "begin", "document"
     tex "maketitle"
     puts
@@ -38,7 +39,7 @@ private
   def tex_para(s)
     s = s.gsub(/_(\S.*?\S)_/, "xBEGINxITALICx\\1xENDxITALICx")
     s.gsub!(/\b--\b/, "---")
-    s = tex_escape(HTMLEntities.new.decode(RubyPants.new(s).to_html))
+    s = tex_escape(punctuate(s))
     s.gsub!(/xBEGINxITALICx/, "\\\\textit{")
     s.gsub!(/xENDxITALICx/, "}")
     puts s
@@ -47,6 +48,10 @@ private
   def tex_escape(s)
     return nil if s.nil?
     s.gsub(/[\\{}$&#%^_~]/, '\\\\\\0')
+  end
+
+  def punctuate(s)
+    HTMLEntities.new.decode(RubyPants.new(s).to_html)
   end
 
   def shift
@@ -62,21 +67,20 @@ private
   end
 
   def read_header
-    title  = ''
-    author = ''
-    while (line = shift) !~ /\*/
+    while (line = @istream.gets) !~ /\*\*\*|---/
       case line.rstrip
       when /^Title: (.*)/
-        title = $1
-        tex "title", title
+        tex "title", punctuate($1)
       when /^Author: (.*)/
-        author = $1
-        tex "author", author
+        tex "author", punctuate($1)
       end
     end
-    shift if peek =~ /^Produced by/i
-    shift if title.downcase.include?(peek.downcase)
-    shift if peek.downcase.include?(author.downcase)
+  end
+
+  def skip_title
+    until peek =~ /\bChapter\b|\bPart\b/ or peek.length > 80
+      shift
+    end
   end
 
   def process_paragraphs

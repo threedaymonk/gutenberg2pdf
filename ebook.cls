@@ -620,6 +620,8 @@
 
 \usepackage[top=0mm, bottom=0mm, left=0mm, right=0mm]{geometry} 
 \pagestyle{empty}
+\usepackage{fontspec}
+\setromanfont{Liberation Serif}
 
 \endinput
 %%

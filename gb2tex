@@ -61,15 +61,21 @@ private
   end
 
   def read_header
+    title  = ''
+    author = ''
     while (line = shift) !~ /\*/
       case line.rstrip
       when /^Title: (.*)/
-        tex "title", $1
+        title = $1
+        tex "title", title
       when /^Author: (.*)/
-        tex "author", $1
+        author = $1
+        tex "author", author
       end
     end
     shift if peek =~ /^Produced by/i
+    shift if title.downcase.include?(peek.downcase)
+    shift if peek.downcase.include?(author.downcase)
   end
 
   def process_paragraphs

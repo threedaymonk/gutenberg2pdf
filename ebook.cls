@@ -613,25 +613,10 @@
 \newcommand\partname{Part}
 \newcommand\chaptername{Chapter}
 \newcommand\appendixname{Appendix}
-\def\today{\ifcase\month\or
-  January\or February\or March\or April\or May\or June\or
-  July\or August\or September\or October\or November\or December\fi
-  \space\number\day, \number\year}
-\setlength\columnsep{10\p@}
-\setlength\columnseprule{0\p@}
 \pagestyle{headings}
 \pagenumbering{arabic}
-\if@twoside
-\else
-  \raggedbottom
-\fi
-\if@twocolumn
-  \twocolumn
-  \sloppy
-  \flushbottom
-\else
-  \onecolumn
-\fi
+\raggedbottom
+\onecolumn
 
 \usepackage[top=0mm, bottom=0mm, left=0mm, right=0mm]{geometry} 
 \pagestyle{empty}

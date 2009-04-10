@@ -36,6 +36,7 @@ private
 
   def tex_para(s)
     s = s.gsub(/_(\S.*?\S)_/, "xBEGINxITALICx\\1xENDxITALICx")
+    s.gsub!(/\b--\b/, "---")
     s = tex_escape(HTMLEntities.new.decode(RubyPants.new(s).to_html))
     s.gsub!(/xBEGINxITALICx/, "\\\\textit{")
     s.gsub!(/xENDxITALICx/, "}")

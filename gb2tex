@@ -1,0 +1,90 @@
+#!/usr/bin/env ruby
+require 'rubypants'
+require 'htmlentities'
+
+class Converter
+  def initialize(istream, ostream)
+    @istream = istream
+    @ostream = ostream
+  end
+
+  def process
+    tex "documentclass", "ebook"
+    read_file
+    read_header
+    tex "begin", "document"
+    tex "maketitle"
+    puts
+    process_paragraphs
+    tex "end", "document"
+  end
+
+private
+  def read_file
+    @paragraphs = @istream.read.split(/\n{2,}/)
+  end
+
+  def puts(*a)
+    @ostream.puts(*a)
+  end
+
+  def tex(name, param=nil)
+    directive = "\\" + name
+    directive << "{" << tex_escape(param) << "}" if param
+    puts directive
+  end
+
+  def tex_para(s)
+    escaped = tex_escape(HTMLEntities.new.decode(RubyPants.new(s).to_html))
+    puts escaped.gsub(/\\_(\S.*?\S)\\_/, "\\\\textit{\\1}")
+  end
+
+  def tex_escape(s)
+    return nil if s.nil?
+    s.gsub(/[\\{}$&#%^_~]/, '\\\\\\0')
+  end
+
+  def shift
+    @paragraphs.shift
+  end
+
+  def peek
+    @paragraphs.first
+  end
+
+  def unwrap(s)
+    s.rstrip.gsub(/ *\n */, ' ')
+  end
+
+  def read_header
+    while (line = shift) !~ /\*/
+      case line.rstrip
+      when /^Title: (.*)/
+        tex "title", $1
+      when /^Author: (.*)/
+        tex "author", $1
+      end
+    end
+    shift if peek =~ /^Produced by/i
+  end
+
+  def process_paragraphs
+    while paragraph = shift
+      case paragraph
+      when /^Chapter /
+        tex "section*", paragraph
+        puts
+      when /^Part /
+        tex "part*", paragraph
+        puts
+      when /^\*\*\* +END/
+        return
+      else
+        tex_para paragraph
+        puts
+      end
+    end
+  end
+end
+
+Converter.new($stdin, $stdout).process

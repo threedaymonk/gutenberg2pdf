@@ -242,17 +242,17 @@
      \interlinepenalty \@M
      \normalfont
      \ifnum \c@secnumdepth >-2\relax
-       \huge\bfseries \partname\nobreakspace\thepart
+       \Large\bfseries \partname\nobreakspace\thepart
        \par
        \vskip 20\p@
      \fi
-     \Huge \bfseries #2\par}%
+     \LARGE \bfseries #2\par}%
     \@endpart}
 \def\@spart#1{%
     {\centering
      \interlinepenalty \@M
      \normalfont
-     \Huge \bfseries #1\par}%
+     \LARGE \bfseries #1\par}%
     \@endpart}
 \def\@endpart{\vfil\newpage
               \if@twoside
@@ -295,13 +295,13 @@
   {\parindent \z@ \raggedright \normalfont
     \ifnum \c@secnumdepth >\m@ne
       \if@mainmatter
-        \huge\bfseries \@chapapp\space \thechapter
+        \Large\bfseries \@chapapp\space \thechapter
         \par\nobreak
         \vskip 20\p@
       \fi
     \fi
     \interlinepenalty\@M
-    \Huge \bfseries #1\par\nobreak
+    \LARGE \bfseries #1\par\nobreak
     \vskip 40\p@
   }}
 \def\@schapter#1{\if@twocolumn
@@ -314,7 +314,7 @@
   {\parindent \z@ \raggedright
     \normalfont
     \interlinepenalty\@M
-    \Huge \bfseries  #1\par\nobreak
+    \LARGE \bfseries  #1\par\nobreak
     \vskip 40\p@
   }}
 \newcommand\section{\@startsection {section}{1}{\z@}%

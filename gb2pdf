@@ -78,7 +78,7 @@ private
   end
 
   def skip_title
-    until peek =~ /\bChapter\b|\bPart\b/ or peek.length > 80
+    until peek =~ /^(chapter|part|section|volume)\b/i or peek.length > 80
       shift
     end
   end
@@ -86,10 +86,10 @@ private
   def process_paragraphs
     while paragraph = shift
       case paragraph
-      when /^Chapter /
+      when /^chapter ([0-9]+|[clxvi]+)\b/i
         tex "section*", paragraph
         puts
-      when /^Part /
+      when /^(part|section|volume) ([0-9]+|[clxvi]+)\b/i
         tex "part*", paragraph
         puts
       when /^\*\*\* +END/

@@ -105,7 +105,7 @@ private
   end
 
   def part?(line)
-    line =~ /^(part|section|volume) ([0-9]+|[clxvi]+)\b/i
+    line =~ /^(book|part|section|volume) ([0-9]+|[clxvi]+)\b/i
   end
 end
 

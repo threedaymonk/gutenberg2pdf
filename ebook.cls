@@ -1,3 +1,4 @@
+% vim: syntax=tex
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
 \ProvidesClass{ebook}
               [2009/04/10 v1.0

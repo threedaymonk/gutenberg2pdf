@@ -625,10 +625,11 @@
 \raggedbottom
 \onecolumn
 
-\usepackage[top=0mm, bottom=0mm, left=0mm, right=0mm]{geometry} 
+\usepackage[top=2mm, bottom=2mm, left=2mm, right=2mm]{geometry}
 \pagestyle{empty}
 \usepackage{fontspec}
 \setromanfont{Liberation Serif}
+\sloppy
 \RequirePackage[xetex]{hyperref}
 
 \endinput

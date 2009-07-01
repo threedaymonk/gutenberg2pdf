@@ -620,6 +620,10 @@
 \newcommand\partname{Part}
 \newcommand\chaptername{Chapter}
 \newcommand\appendixname{Appendix}
+\newcommand{\dinkus}{
+  \begin{center}
+  ***
+  \end{center}}
 \def\today{\ifcase\month\or
   January\or February\or March\or April\or May\or June\or
   July\or August\or September\or October\or November\or December\fi

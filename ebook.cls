@@ -85,4 +85,7 @@
   \setromanfont{\@font}
 \fi
 
+% Allow sub-/superscript via \textsubscript{} and \textsuperscript{}
+\usepackage{fixltx2e}
+
 \endinput

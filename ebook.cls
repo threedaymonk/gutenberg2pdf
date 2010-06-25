@@ -24,7 +24,7 @@
   \def\@font{Linux Libertine O}}
 
 % Inherit from existing book class
-\ExecuteOptions{sonyreader,gentium} % default suits me
+\ExecuteOptions{sonyreader,libertine} % default suits me
 \ProcessOptions
 \LoadClass{book}
 
